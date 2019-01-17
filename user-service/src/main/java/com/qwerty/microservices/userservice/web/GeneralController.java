@@ -12,7 +12,7 @@ import java.security.Principal;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class GeneralController {
 
     private UserDetailService userDetailService;
@@ -46,13 +46,6 @@ public class GeneralController {
     public RestMsg helloAdmin(Principal principal){
         return new RestMsg(String.format("Welcome '%s'!", principal.getName()));
     }
-
-    @RequestMapping(value ="/authenticate",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public User authenticationBean(@RequestBody User user){
-        return userDetailService.findUserByUsername(user.getUsername());
-    }
-
-
 
 
     // A helper class to make our web output look nice

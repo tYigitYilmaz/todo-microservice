@@ -16,7 +16,7 @@ import java.security.Principal;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class UserController {
 
     private UserDetailService userDetailService;
@@ -25,9 +25,6 @@ public class UserController {
     public void setUserDetailService(UserDetailService userDetailService) {
         this.userDetailService = userDetailService;
     }
-
-
-
 
     @RequestMapping(value ="/api/register",method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<User> registerAccount(@RequestBody User user) throws AccountException {
@@ -52,8 +49,7 @@ public class UserController {
         }
     }
     @RequestMapping(value ="{userName}",method = RequestMethod.POST
-            , consumes = MediaType.APPLICATION_JSON_UTF8_VALUE
-            , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+            , consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     User userMather(@PathVariable String userName){
         return userDetailService.findUserByUsername(userName);
     }
